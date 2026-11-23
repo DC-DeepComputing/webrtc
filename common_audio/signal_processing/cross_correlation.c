@@ -39,7 +39,11 @@ void WebRtcSpl_CrossCorrelation(int32_t* cross_correlation,
                                 size_t dim_cross_correlation,
                                 int right_shifts,
                                 int step_seq2) {
-#if defined(WEBRTC_HAS_NEON)
+#if defined(WEBRTC_HAS_RVV)
+  WebRtcSpl_CrossCorrelationRvv(cross_correlation, seq1, seq2, dim_seq,
+                                dim_cross_correlation, right_shifts,
+                                step_seq2);
+#elif defined(WEBRTC_HAS_NEON)
   WebRtcSpl_CrossCorrelationNeon(cross_correlation, seq1, seq2, dim_seq,
                                  dim_cross_correlation, right_shifts,
                                  step_seq2);

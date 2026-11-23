@@ -114,6 +114,9 @@ rtc_library("cross_correlation") {
       cflags = [ "-mfpu=neon" ]
     }
   }
+  if (current_cpu == "riscv64") {
+    sources += [ "signal_processing/cross_correlation_rvv.c" ]
+  }
   if (current_cpu == "mipsel") {
     sources += [ "signal_processing/cross_correlation_mips.c" ]
   }
